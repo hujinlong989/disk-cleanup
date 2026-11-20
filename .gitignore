@@ -1,0 +1,10 @@
+# 本地运行产物
+*.log
+disk-cleanup-logs/
+# 编辑器
+.vscode/
+.idea/
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,38 @@
+disk-cleanup
+===========
+
+Windows 磁盘空间体检与清理 skill —— 给 MiniMax Code / Claude Code 用。
+
+它扫描磁盘占用点，清理「删了会自动重建」的东西（浏览器离线缓存、应用更新
+安装包、过期日志、临时文件），并且把「不能删」的东西用代码护栏钉死：
+用户字体、浏览器登录态（IndexedDB / Cookies / Local Storage / Bookmarks /
+History）、用户文档照片桌面、数据库本体、虚拟磁盘镜像、项目源码与依赖。
+
+所有删除走 Windows 回收站，可恢复；脚本不自动清空回收站，由你决定何时清。
+
+安装（仓库根目录即 skill 本体，克隆后直接可用）：
+
+    git clone --depth 1 <this-repo> "$env:USERPROFILE\.minimax\skills\disk-cleanup"
+    git clone --depth 1 <this-repo> "$env:USERPROFILE\.claude\skills\disk-cleanup"
+
+装好后对 AI 说「C盘没空间了，帮我清理一下」即触发。也可以手动跑：
+
+    pwsh -File scripts/disk-clean.ps1            # 体检
+    pwsh -File scripts/disk-clean.ps1 -Clean     # 清理
+    pwsh -File scripts/disk-clean.ps1 -Deep      # 深挖
+    pwsh -File scripts/disk-clean.ps1 -Json      # JSON 输出
+
+完整说明（效果数据、安全设计三层、参数表、边界与已知问题）见 docs/README.md。
+
+目录结构：
+
+    SKILL.md                    skill 主体：触发条件 + 操作流程 + 汇报格式
+    scripts/disk-clean.ps1      执行脚本：体检 / 清理 / 深挖 / JSON
+    references/categories.md    类别清单与护栏边界（判定有疑问时才读）
+    docs/README.md              完整人类文档
+    LICENSE                     MIT
+
+注意：根目录的 README 是纯文本占位（skill 目录不允许放 README.md，
+会触发 skill-creator 的 lint 报错），带格式的完整文档在 docs/ 下。
+
+MIT License
