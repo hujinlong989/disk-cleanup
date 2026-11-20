@@ -266,9 +266,17 @@ function Get-CatUpgradeResidue {
     $files = @()
     $p = Join-Path $AppRoaming 'Tencent\WXWork\upgrade'
     if (Test-Path -LiteralPath $p) {
-        $installed = Get-ChildItem -LiteralPath 'D:\Program Files (x86)\WXWork' -Force -Directory -ErrorAction SilentlyContinue |
-            Select-Object -ExpandProperty Name
-        if ($installed) { $files = Get-ChildItem -LiteralPath $p -Force -Recurse -File -ErrorAction SilentlyContinue }
+        # 企业微信可能装在任意盘 / 任意目录：注册表卸载项 + 常见安装目录双重确认
+        $installDirs = @(
+            'C:\Program Files (x86)',
+            'C:\Program Files',
+            'D:\Program Files (x86)',
+            'D:\Program Files',
+            (Join-Path $AppLocal 'Programs')
+        )
+        if (Test-AppInstalled -Patterns @('WXWork', '企业微信') -InstallDirs $installDirs) {
+            $files = Get-ChildItem -LiteralPath $p -Force -Recurse -File -ErrorAction SilentlyContinue
+        }
     }
     return @{ Category = 'UpgradeResidue'; Files = @($files); Dirs = @(); Risk = 'Safe'
               Note = '已安装完成、遗留的升级包副本' }
