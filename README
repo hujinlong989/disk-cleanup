@@ -12,8 +12,8 @@ History）、用户文档照片桌面、数据库本体、虚拟磁盘镜像、�
 
 安装（仓库根目录即 skill 本体，克隆后直接可用）：
 
-    git clone --depth 1 <this-repo> "$env:USERPROFILE\.minimax\skills\disk-cleanup"
-    git clone --depth 1 <this-repo> "$env:USERPROFILE\.claude\skills\disk-cleanup"
+    git clone --depth 1 https://github.com/hujinlong989/disk-cleanup.git "$env:USERPROFILE\.minimax\skills\disk-cleanup"
+    git clone --depth 1 https://github.com/hujinlong989/disk-cleanup.git "$env:USERPROFILE\.claude\skills\disk-cleanup"
 
 装好后对 AI 说「C盘没空间了，帮我清理一下」即触发。也可以手动跑：
 

@@ -26,13 +26,13 @@ C 盘满了 → 不知道哪些能删、哪些不能删 → 让 AI 自己扫全�
 **MiniMax Code**
 
 ```powershell
-git clone <this-repo> "$env:USERPROFILE\.minimax\skills\disk-cleanup"
+git clone https://github.com/hujinlong989/disk-cleanup.git "$env:USERPROFILE\.minimax\skills\disk-cleanup"
 ```
 
 **Claude Code**
 
 ```powershell
-git clone <this-repo> "$env:USERPROFILE\.claude\skills\disk-cleanup"
+git clone https://github.com/hujinlong989/disk-cleanup.git "$env:USERPROFILE\.claude\skills\disk-cleanup"
 ```
 
 两份可以并存（内容相同），也可以只装一份。
